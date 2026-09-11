@@ -1,3 +1,4 @@
+import { getUserBalance } from '../controllers/dashboardController.js';
 import { Router } from 'express';
 import { getUserProfile, updateUserProfile } from '../controllers/userController.js';
 import { requireJwtAuth } from '../middleware/jwtAuth.js';
@@ -5,6 +6,7 @@ import { validateBody } from '../middleware/validation.js';
 import { updateUserProfileSchema } from '../schemas/userSchemas.js';
 
 const router = Router();
+router.get('/balance', requireJwtAuth, getUserBalance);
 
 /**
  * @swagger

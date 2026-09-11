@@ -41,10 +41,10 @@ import {
   getAssetDecimals,
 } from "../../utils/amount";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/backend";
 
 function formatCurrency(value: number) {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+  return `${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)} XLM`;
 }
 
 function formatPercent(value: number) {
@@ -74,12 +74,12 @@ export function LendPageClient() {
     onFallbackPoll: () => invalidatePoolStats(),
   });
 
-  const depositPrecisionError = getPrecisionError(depositAmount, "USDC");
-  const withdrawPrecisionError = getPrecisionError(withdrawAmount, "USDC");
-  const depositDecimals = getAssetDecimals("USDC");
-  const withdrawDecimals = getAssetDecimals("USDC");
-  const depositHelper = buildAmountHelperText(depositAmount, "USDC", depositDecimals);
-  const withdrawHelper = buildAmountHelperText(withdrawAmount, "USDC", withdrawDecimals);
+  const depositPrecisionError = getPrecisionError(depositAmount, "XLM");
+  const withdrawPrecisionError = getPrecisionError(withdrawAmount, "XLM");
+  const depositDecimals = getAssetDecimals("XLM");
+  const withdrawDecimals = getAssetDecimals("XLM");
+  const depositHelper = buildAmountHelperText(depositAmount, "XLM", depositDecimals);
+  const withdrawHelper = buildAmountHelperText(withdrawAmount, "XLM", withdrawDecimals);
 
   const handleDeposit = async () => {
     const amount = parseAmount(depositAmount);
@@ -350,7 +350,7 @@ export function LendPageClient() {
                     value={depositAmount}
                     onChange={(event) => setDepositAmount(sanitizeAmountInput(event.target.value))}
                     onBlur={(event) => {
-                      const formatted = formatAmountOnBlur(event.target.value, "USDC");
+                      const formatted = formatAmountOnBlur(event.target.value, "XLM");
                       if (formatted && formatted !== event.target.value) {
                         setDepositAmount(formatted);
                       }
@@ -404,7 +404,7 @@ export function LendPageClient() {
                     value={withdrawAmount}
                     onChange={(event) => setWithdrawAmount(sanitizeAmountInput(event.target.value))}
                     onBlur={(event) => {
-                      const formatted = formatAmountOnBlur(event.target.value, "USDC");
+                      const formatted = formatAmountOnBlur(event.target.value, "XLM");
                       if (formatted && formatted !== event.target.value) {
                         setWithdrawAmount(formatted);
                       }

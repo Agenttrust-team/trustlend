@@ -186,6 +186,13 @@ export class EventIndexer {
     this.scheduleNextPoll();
   }
 
+  /** One bounded polling cycle for a serverless scheduler. */
+  async runOnce(): Promise<void> {
+    if (this.running) throw new Error('Indexer is already running');
+    this.running = true;
+    try { await this.pollOnce(); } finally { this.running = false; }
+  }
+
   async stop(): Promise<void> {
     this.running = false;
     if (this.pollTimeout) {

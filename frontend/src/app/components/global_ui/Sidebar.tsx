@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { BrandMark } from "./BrandMark";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -62,6 +63,8 @@ export function Sidebar({ onClose, className }: SidebarProps) {
     { name: t("home"), href: `/${locale}`, icon: LayoutDashboard },
     { name: t("loans"), href: `/${locale}/loans`, icon: HandCoins },
     { name: "Lend", href: `/${locale}/lend`, icon: PiggyBank },
+    { name: "Send money", href: `/${locale}/send-remittance`, icon: SendHorizontal },
+    { name: "Settings", href: `/${locale}/settings`, icon: Settings },
     { name: t("liquidations"), href: `/${locale}/liquidations`, icon: ShieldAlert },
     { name: t("activity"), href: `/${locale}/activity`, icon: Clock },
     { name: "Wallet", href: `/${locale}/wallet`, icon: CreditCard },
@@ -74,17 +77,15 @@ export function Sidebar({ onClose, className }: SidebarProps) {
     <aside
       aria-label="Main navigation"
       className={cn(
-        "flex h-full w-64 flex-col border-r border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950",
+        "trust-sidebar flex h-full w-64 shrink-0 flex-col border-r border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950",
         className,
       )}
     >
       <div className="flex h-16 items-center justify-between px-6 border-b border-zinc-200 dark:border-zinc-800">
         <Link href={`/${locale}`} className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-indigo-600 flex items-center justify-center">
-            <SendHorizontal className="h-5 w-5 text-white" />
-          </div>
+          <BrandMark className="h-9 w-9" />
           <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            RemitLend
+            TrustLend
           </span>
         </Link>
         {onClose && (
@@ -99,6 +100,9 @@ export function Sidebar({ onClose, className }: SidebarProps) {
         )}
       </div>
 
+      <p className="px-7 pt-8 pb-2 text-[10px] font-semibold tracking-[0.2em] text-zinc-400">
+        YOUR WORKSPACE
+      </p>
       <nav className="flex-1 space-y-1 p-4 overflow-y-auto" aria-label="Site navigation">
         {navItems.map((item) => {
           const isActive = pathname === item.href;

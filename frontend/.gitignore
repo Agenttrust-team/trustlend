@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 playwright-report/
 test-results/
+
+# Generated service worker
+/public/sw.js
+/public/sw.js.map

@@ -22,7 +22,7 @@ interface ErrorFallbackProps {
   variant?: "page" | "section";
 }
 
-const REPORT_ISSUE_URL = "https://github.com/LabsCrypt/remitlend/issues/new";
+const REPORT_ISSUE_URL = "https://github.com/Agenttrust-team/trustlend/issues/new";
 
 export function ErrorFallback({
   error,
@@ -65,7 +65,7 @@ export function ErrorFallback({
               Something went wrong
             </h1>
             <p className="max-w-lg text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-              {`The ${scope} hit an unexpected runtime error. You can reset this area and keep using the rest of RemitLend.`}
+              {`The ${scope} hit an unexpected runtime error. You can reset this area and keep using the rest of TrustLend.`}
             </p>
             {error?.message ? (
               <p className="rounded-2xl border border-zinc-200 bg-zinc-100 px-4 py-3 font-mono text-xs text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">

@@ -210,7 +210,7 @@ export default function ActivityPage() {
                   isFilteredView
                     ? "Try a different filter to see more loan and remittance history."
                     : t("emptyState.description") ||
-                      "Your transaction history will appear here once you start using RemitLend."
+                      "Your transaction history will appear here once you start using TrustLend."
                 }
                 actionLabel={isFilteredView ? undefined : "Send your first remittance"}
                 actionHref={isFilteredView ? undefined : `/${locale}/send-remittance`}

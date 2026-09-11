@@ -46,7 +46,7 @@ describe("ErrorBoundary", () => {
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Report this issue" })).toHaveAttribute(
       "href",
-      "https://github.com/LabsCrypt/remitlend/issues/new",
+      "https://github.com/Agenttrust-team/trustlend/issues/new",
     );
     expect(screen.getByText("Test error")).toBeInTheDocument();
   });

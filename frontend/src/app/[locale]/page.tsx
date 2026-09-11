@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  ArrowUpRight,
-  ArrowDownLeft,
-  Users,
-  Activity,
-  Clock,
-  ExternalLink,
-  WalletCards,
-} from "lucide-react";
+import { ArrowUpRight, ArrowDownLeft, Users, Activity, Clock, ExternalLink } from "lucide-react";
+import { useToastStore } from "../stores/useToastStore";
+import { WelcomeDashboard } from "../components/global_ui/WelcomeDashboard";
 import { useTranslations } from "next-intl"; // <--- This is the new one
 import { useRouter } from "next/navigation";
 import {
@@ -241,53 +235,11 @@ export default function Home() {
 
   if (!isConnected) {
     return (
-      <main className="space-y-8 min-h-screen p-8 lg:p-12 max-w-7xl mx-auto animate-in fade-in duration-500">
-        <header>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
-            {t("disconnected.heading")}
-          </h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t("disconnected.subheading")}</p>
-        </header>
-
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 opacity-50 grayscale-[0.5]">
-          {(
-            [
-              t("stats.netWorth"),
-              t("stats.activeLoans"),
-              t("stats.totalRemitted"),
-              t("stats.yieldApy"),
-            ] as string[]
-          ).map((label, i) => (
-            <div
-              key={i}
-              className="rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950"
-            >
-              <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">{label}</p>
-              <h3 className="text-2xl font-bold text-zinc-300 dark:text-zinc-700">$0.00</h3>
-            </div>
-          ))}
-        </section>
-
-        <div className="rounded-2xl bg-zinc-50 p-12 text-center dark:bg-zinc-900/50 border border-dashed border-zinc-200 dark:border-zinc-800">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 mb-6">
-            <WalletCards className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
-          </div>
-          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
-            {t("disconnected.walletNotConnected")}
-          </h2>
-          <p className="mt-2 text-zinc-500 dark:text-zinc-400 max-w-sm mx-auto">
-            {t("disconnected.connectPrompt")}
-          </p>
-          <button
-            onClick={() => {
-              void connectWallet();
-            }}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20"
-          >
-            {t("disconnected.connectButton")}
-          </button>
-        </div>
-      </main>
+      <WelcomeDashboard
+        onConnect={() => {
+          void connectWallet().catch((error: unknown) => { useToastStore.getState().addToast({ type: "error", title: "Wallet connection", description: error instanceof Error ? error.message : "Unable to connect wallet." }); });
+        }}
+      />
     );
   }
 

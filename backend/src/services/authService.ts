@@ -73,7 +73,7 @@ export async function generateChallenge(publicKey: string): Promise<ChallengeMes
   const nonce = crypto.randomBytes(32).toString('hex');
   const timestamp = Date.now();
 
-  const message = `Sign this message to authenticate with RemitLend.\n\nNonce: ${nonce}\nTimestamp: ${timestamp}\n\nThis request will expire in 5 minutes.`;
+  const message = `Sign this message to authenticate with TrustLend.\n\nNonce: ${nonce}\nTimestamp: ${timestamp}\n\nThis request will expire in 5 minutes.`;
   const stored = await storeChallengeNonce(publicKey, nonce, message, timestamp);
   if (!stored) {
     throw new Error('Failed to store challenge nonce');
@@ -131,7 +131,10 @@ export function verifySignature(publicKey: string, message: string, signature: s
 
     const messageBytes = Buffer.from(message, 'utf-8');
 
-    return Keypair.fromPublicKey(publicKey).verify(messageBytes, signatureBytes);
+    const key = Keypair.fromPublicKey(publicKey);
+    const payload = crypto.createHash('sha256').update('Stellar Signed Message:\n').update(messageBytes).digest();
+    // SEP-53 is used by Freighter; retain compatibility with existing raw-message clients.
+    return key.verify(payload, signatureBytes) || key.verify(messageBytes, signatureBytes);
   } catch {
     return false;
   }

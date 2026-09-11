@@ -1,2 +1,6 @@
 .env
 test_results.json
+.vercel/
+.env*.local
+.vercel
+.env*

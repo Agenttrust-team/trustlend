@@ -30,7 +30,7 @@
     },
     "disconnected": {
       "heading": "Dashboard",
-      "subheading": "Maligayang pagdating sa RemitLend. Ikonekta ang iyong wallet upang makita ang iyong portfolio.",
+      "subheading": "Maligayang pagdating sa TrustLend. Ikonekta ang iyong wallet upang makita ang iyong portfolio.",
       "walletNotConnected": "Hindi Nakakonekta ang Wallet",
       "connectPrompt": "Ikonekta ang iyong wallet upang suriin ang iyong on-chain credit score, pamahalaan ang mga aktibong posisyon, at subaybayan ang mga cross-border na remittance.",
       "connectButton": "Ikonekta ang Wallet"

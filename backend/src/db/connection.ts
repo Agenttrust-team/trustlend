@@ -37,6 +37,7 @@ const metricsInterval = setInterval(() => {
     waiting: pool.waitingCount,
   });
 }, 60000);
+metricsInterval.unref();
 
 // Unref the interval so it doesn't keep the process alive
 metricsInterval.unref();

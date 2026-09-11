@@ -42,14 +42,19 @@ export function DashboardShell({ children }: DashboardShellProps) {
       <Sidebar
         onClose={() => setIsSidebarOpen(false)}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 transition-transform duration-300 lg:static lg:translate-x-0 hidden lg:flex",
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full",
+          "fixed inset-y-0 left-0 z-50 transition-transform duration-300 lg:static lg:translate-x-0",
+          isSidebarOpen ? "translate-x-0 flex" : "-translate-x-full hidden lg:flex",
         )}
       />
 
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         {/* Header */}
         <Header onMenuClick={() => setIsSidebarOpen(true)} />
+        {process.env.NEXT_PUBLIC_STELLAR_NETWORK === "testnet" && (
+          <div className="border-b border-indigo-100 bg-indigo-50 px-4 py-2 text-center text-xs text-indigo-800 dark:bg-indigo-950 dark:text-indigo-200">
+            Stellar testnet · Use test funds only. Lending pools settle in test XLM.
+          </div>
+        )}
         <OfflineBanner />
         <PauseBanner />
 

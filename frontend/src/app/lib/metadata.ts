@@ -8,12 +8,16 @@ type PageMetadataInput = {
 };
 
 const LOCALES = ["en", "es", "tl"] as const;
-const DEFAULT_SITE_URL = "https://remitlend.com";
-const SITE_NAME = "RemitLend";
+const DEFAULT_SITE_URL = "https://trustlend.vercel.app";
+const SITE_NAME = "TrustLend";
 const OG_IMAGE_PATH = "/og-image.png";
 
 export function getSiteUrl() {
-  const configuredUrl = process.env.NEXT_PUBLIC_APP_URL ?? DEFAULT_SITE_URL;
+  const configuredUrl =
+    process.env.NEXT_PUBLIC_APP_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : DEFAULT_SITE_URL);
 
   try {
     return new URL(configuredUrl);

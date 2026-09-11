@@ -30,7 +30,7 @@
     },
     "disconnected": {
       "heading": "Dashboard",
-      "subheading": "Welcome to RemitLend. Please connect your wallet to view your portfolio.",
+      "subheading": "Welcome to TrustLend. Please connect your wallet to view your portfolio.",
       "walletNotConnected": "Wallet Not Connected",
       "connectPrompt": "Connect your wallet to analyze your on-chain credit score, manage active positions, and track cross-border remittances.",
       "connectButton": "Connect Wallet"

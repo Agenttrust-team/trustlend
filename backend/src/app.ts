@@ -1,3 +1,4 @@
+import maintenanceRoutes from './routes/maintenanceRoutes.js';
 import express, { type Request, type Response, type NextFunction } from 'express';
 import cors from 'cors';
 import compression from 'compression';
@@ -33,6 +34,7 @@ import { pauseGuard } from './middleware/pauseGuard.js';
 import { asyncHandler } from './utils/asyncHandler.js';
 import { AppError } from './errors/AppError.js';
 const app = express();
+if (process.env.VERCEL) app.set("trust proxy", 1);
 
 const isProduction = process.env.NODE_ENV === 'production';
 const configuredFrontendUrl = process.env.FRONTEND_URL?.trim();
@@ -124,7 +126,7 @@ app.use(metricsMiddleware);
 app.use(pauseGuard);
 
 app.get('/', (_req: Request, res: Response) => {
-  res.send('RemitLend Backend is running');
+  res.send('TrustLend API is running');
 });
 
 /**
@@ -289,6 +291,7 @@ registerStatusRoutes(statusRouter);
 app.use('/', statusRouter);
 
 // Legacy routes (deprecated, maintained for backward compatibility)
+app.use('/api/internal', maintenanceRoutes);
 app.use('/api', simulationRoutes);
 app.use('/api/score', scoreRoutes);
 app.use('/api/loans', loanRoutes);

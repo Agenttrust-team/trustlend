@@ -1,3 +1,4 @@
+import { listDashboardLoans } from '../controllers/dashboardController.js';
 import { createTestLoan } from '../controllers/loanController.js';
 import { markLoanDefaulted } from '../controllers/loanController.js';
 import { contestDefault } from '../controllers/loanController.js';
@@ -40,6 +41,7 @@ import {
 import { buildCancelLoanTx } from '../controllers/loanController.js';
 
 const router = Router();
+router.get('/', requireJwtAuth, listDashboardLoans);
 
 // TEST/DEV ONLY: Create a loan directly for test setup
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {

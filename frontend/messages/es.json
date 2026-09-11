@@ -30,7 +30,7 @@
     },
     "disconnected": {
       "heading": "Tablero",
-      "subheading": "Bienvenido a RemitLend. Por favor conecta tu billetera para ver tu portafolio.",
+      "subheading": "Bienvenido a TrustLend. Por favor conecta tu billetera para ver tu portafolio.",
       "walletNotConnected": "Billetera no conectada",
       "connectPrompt": "Conecta tu billetera para analizar tu puntuación crediticia on-chain, gestionar posiciones activas y rastrear remesas internacionales.",
       "connectButton": "Conectar billetera"

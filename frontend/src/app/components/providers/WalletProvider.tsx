@@ -5,6 +5,9 @@ import type { TokenBalance, WalletNetwork, WalletStatus } from "../../stores/use
 import { useWalletStore } from "../../stores/useWalletStore";
 import { getNetworkPassphrase } from "../../utils/networkPassphrase";
 
+import { establishWalletSession, clearWalletSession } from "../../lib/walletSession";
+import { useUserStore } from "../../stores/useUserStore";
+
 type FreighterApi = typeof import("@stellar/freighter-api");
 
 interface ExtendedFreighterApi {
@@ -195,6 +198,18 @@ export function WalletProvider({ children }: WalletProviderProps) {
       const walletNetwork = mapWalletNetwork(networkResult.network);
       const nextStatus: WalletStatus = walletNetwork.isSupported ? "connected" : "error";
 
+      const expectedNetwork = process.env.NEXT_PUBLIC_STELLAR_NETWORK;
+      if (expectedNetwork && walletNetwork.name !== expectedNetwork.toUpperCase()) {
+        throw new Error(`Switch Freighter to ${expectedNetwork} to use this TrustLend deployment.`);
+      }
+      if (interactive) {
+        const signer = await loadFreighterApi();
+        await establishWalletSession(addressResult.address, signer.signMessage);
+      } else if (useUserStore.getState().user?.walletAddress !== addressResult.address) {
+        useUserStore.getState().clearUser();
+        disconnect();
+        return;
+      }
       setConnected(addressResult.address, walletNetwork);
       setNetwork(walletNetwork);
       setStatus(nextStatus);
@@ -236,6 +251,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
   }
 
   function disconnectWallet() {
+    void clearWalletSession();
     disconnect();
   }
 

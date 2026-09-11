@@ -8,6 +8,7 @@ import {
   TransactionBuilder,
   xdr,
 } from "@stellar/stellar-sdk";
+import { STROOP_DECIMALS, toStroops } from "./amount";
 import { DEFAULT_NETWORK_PASSPHRASE, getNetworkPassphrase } from "./networkPassphrase";
 
 export { DEFAULT_NETWORK_PASSPHRASE, getNetworkPassphrase };

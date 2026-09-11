@@ -6,7 +6,7 @@ import { useSSE, type RealtimeStatus } from "./useSSE";
 import { queryKeys } from "./useApi";
 import { useUserStore } from "../stores/useUserStore";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/backend";
 
 const LOAN_REFRESH_EVENTS = new Set([
   "LoanRepaid",

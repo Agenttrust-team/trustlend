@@ -1,0 +1,23 @@
+name: TrustLend testnet indexer
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: trustlend-maintenance
+  cancel-in-progress: false
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Index contract events and retry pending deliveries
+        env:
+          MAINTENANCE_URL: ${{ secrets.TRUSTLEND_MAINTENANCE_URL }}
+          CRON_SECRET: ${{ secrets.TRUSTLEND_CRON_SECRET }}
+        run: |
+          test -n "$MAINTENANCE_URL"
+          test -n "$CRON_SECRET"
+          curl --fail-with-body --max-time 295 --retry 1 \
+            --header "Authorization: Bearer $CRON_SECRET" "$MAINTENANCE_URL"

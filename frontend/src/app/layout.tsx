@@ -25,9 +25,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
-  title: "RemitLend - Borderless P2P Lending & Remittance",
+  icons: { icon: "/brand-mark.svg", apple: "/images/apple-touch-icon.png" },
+  title: "TrustLend — A little trust. A world of possibility.",
   description:
-    "Global peer-to-peer lending and instant remittances powered by blockchain technology. Send money and grow your wealth across borders.",
+    "Borrow, lend, and send across borders. TrustLend connects remittance history with peer-to-peer credit on Stellar.",
 };
 
 export default async function RootLayout({

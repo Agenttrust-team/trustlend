@@ -5,7 +5,7 @@ import {
   FAIR_SCORE_MAX_LOAN,
   MINIMUM_SCORE_MAX_LOAN,
   DEFAULT_ONCHAIN_MAX_LOAN_AMOUNT,
-} from "./page";
+} from "../../utils/loanLimits";
 
 describe("RequestLoanPage - getScoreBandMax limit clamping", () => {
   describe("Default score tier limits without contract override", () => {
