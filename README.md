@@ -1,10 +1,6 @@
 # TrustLend
 
-**A little trust. A world of possibility.**
-
-Borrow, lend, and send across borders with remittance-based credit on Stellar.
-
-TrustLend builds on [RemitLend](https://github.com/LabsCrypt/remitlend), with a new visual identity and the original contributor history preserved. Original copyright and license notices remain in [LICENSE](LICENSE).
+**TrustLend is a Stellar-powered financial platform for borrowing, lending, and sending money across borders.** It turns remittance activity into credit history, helping people access fair loans while giving lenders transparent, on-chain opportunities.
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![Frontend: Next.js](https://img.shields.io/badge/Frontend-Next.js-black?logo=next.js)](https://nextjs.org/)
