@@ -15,7 +15,7 @@ import {
 import { useSSE } from "../../../hooks/useSSE";
 import { useUserStore } from "../../../stores/useUserStore";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/backend";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === "production" ? "/api/backend" : "http://localhost:3001");
 
 function summarize(reason: string) {
   return reason.length > 120 ? `${reason.slice(0, 117)}...` : reason;

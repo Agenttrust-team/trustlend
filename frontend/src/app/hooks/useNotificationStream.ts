@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useUserStore, type UserStore } from "../stores/useUserStore";
 import { queryKeys, type AppNotification } from "./useApi";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/backend";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === "production" ? "/api/backend" : "http://localhost:3001");
 
 /**
  * Connects to the SSE /api/notifications/stream endpoint and pushes new

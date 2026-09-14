@@ -23,7 +23,7 @@ import { isJwtExpired, logoutUser, SessionExpiredError } from "../lib/session";
 import { useWallet } from "../components/providers/WalletProvider";
 import { useContractToast } from "./useContractToast";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/backend";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === "production" ? "/api/backend" : "http://localhost:3001");
 
 // ─── Query key factory ────────────────────────────────────────────────────────
 

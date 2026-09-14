@@ -31,7 +31,7 @@ export function PauseBanner() {
     try {
       setIsLoading(true);
       setError(null);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "/api/backend"}/status/pause`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === "production" ? "/api/backend" : "http://localhost:3001")}/status/pause`);
       if (!response.ok) {
         throw new Error(`Failed to fetch pause state: ${response.statusText}`);
       }

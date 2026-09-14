@@ -41,7 +41,7 @@ import {
   getAssetDecimals,
 } from "../../utils/amount";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/backend";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === "production" ? "/api/backend" : "http://localhost:3001");
 
 function formatCurrency(value: number) {
   return `${new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value)} XLM`;

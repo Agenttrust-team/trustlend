@@ -1,6 +1,6 @@
 import { useUserStore, type User } from "../stores/useUserStore";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api/backend";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV === "production" ? "/api/backend" : "http://localhost:3001");
 
 type MessageSigner = (message: string, options: { address: string }) => Promise<{
   signedMessage: string | Uint8Array | null;
