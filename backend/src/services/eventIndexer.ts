@@ -190,7 +190,11 @@ export class EventIndexer {
   async runOnce(): Promise<void> {
     if (this.running) throw new Error('Indexer is already running');
     this.running = true;
-    try { await this.pollOnce(); } finally { this.running = false; }
+    try {
+      await this.pollOnce();
+    } finally {
+      this.running = false;
+    }
   }
 
   async stop(): Promise<void> {

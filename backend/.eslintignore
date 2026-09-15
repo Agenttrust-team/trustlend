@@ -3,3 +3,5 @@ dist
 coverage
 migrations
 src/tests/jest.setup.js
+
+app.ts

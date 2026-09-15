@@ -34,7 +34,7 @@ import { pauseGuard } from './middleware/pauseGuard.js';
 import { asyncHandler } from './utils/asyncHandler.js';
 import { AppError } from './errors/AppError.js';
 const app = express();
-if (process.env.VERCEL) app.set("trust proxy", 1);
+if (process.env.VERCEL) app.set('trust proxy', 1);
 
 const isProduction = process.env.NODE_ENV === 'production';
 const configuredFrontendUrl = process.env.FRONTEND_URL?.trim();

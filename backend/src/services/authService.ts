@@ -132,7 +132,11 @@ export function verifySignature(publicKey: string, message: string, signature: s
     const messageBytes = Buffer.from(message, 'utf-8');
 
     const key = Keypair.fromPublicKey(publicKey);
-    const payload = crypto.createHash('sha256').update('Stellar Signed Message:\n').update(messageBytes).digest();
+    const payload = crypto
+      .createHash('sha256')
+      .update('Stellar Signed Message:\n')
+      .update(messageBytes)
+      .digest();
     // SEP-53 is used by Freighter; retain compatibility with existing raw-message clients.
     return key.verify(payload, signatureBytes) || key.verify(messageBytes, signatureBytes);
   } catch {
