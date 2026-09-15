@@ -80,8 +80,8 @@ verification.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/LabsCrypt/remitlend.git
-   cd remitlend
+   git clone https://github.com/Agenttrust-team/trustlend.git
+   cd trustlend
    ```
 
 2. **Configure environment:**
