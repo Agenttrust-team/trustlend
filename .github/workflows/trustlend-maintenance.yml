@@ -17,7 +17,9 @@ jobs:
           MAINTENANCE_URL: ${{ secrets.TRUSTLEND_MAINTENANCE_URL }}
           CRON_SECRET: ${{ secrets.TRUSTLEND_CRON_SECRET }}
         run: |
-          test -n "$MAINTENANCE_URL"
-          test -n "$CRON_SECRET"
+          if [ -z "$MAINTENANCE_URL" ] || [ -z "$CRON_SECRET" ]; then
+            echo "TrustLend maintenance secrets are not configured; skipping scheduled indexer run."
+            exit 0
+          fi
           curl --fail-with-body --max-time 295 --retry 1 \
             --header "Authorization: Bearer $CRON_SECRET" "$MAINTENANCE_URL"
